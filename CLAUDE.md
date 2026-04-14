@@ -8,6 +8,20 @@ PestPro 2.0 is a pest control management application. This is a greenfield proje
 
 This repository is in its initial setup phase. There is no existing codebase yet. Contributors (human or AI) should follow the conventions below when building out the project.
 
+### Current Tree
+
+```
+pestpro_2.0/
+└── CLAUDE.md   # This file
+```
+
+No source code, `package.json`, tests, CI, or configuration files exist yet. The tech stack has not been chosen.
+
+### Active Branches
+
+- `claude/add-claude-documentation-ax0st` — documentation branch (current). Contains the initial commit introducing `CLAUDE.md`.
+- `main` does not yet exist. It should be created from the first meaningful commit once a tech stack is chosen.
+
 ## Development Conventions
 
 ### Git Workflow
@@ -80,3 +94,16 @@ _(To be documented as the application takes shape)_
 - Run tests after making changes when a test suite exists
 - Do not add unnecessary abstractions or premature optimizations
 - When unsure about a design decision, ask the user
+
+## Session History
+
+This log tracks AI-assisted sessions so future sessions can pick up where prior ones left off. Each session should append a short entry when it finishes meaningful work.
+
+### 2026-04-14 — `claude/add-claude-documentation-ax0st`
+
+- Initial repository bootstrap. Repository was completely empty (no commits, no files) at the start of the session.
+- Created the feature branch `claude/add-claude-documentation-ax0st`.
+- Added `CLAUDE.md` with project overview, git workflow, code style, security, planned domain areas, and notes for AI assistants.
+- Extended `CLAUDE.md` with a current-tree snapshot, active-branch list, and this session-history log.
+- Commits on branch: `Add CLAUDE.md with project conventions and structure guidelines` (root commit).
+- Outstanding decisions for future sessions: choose a tech stack (frontend framework, backend language/runtime, database), establish test and lint tooling, create `main`, and fill in the Key Commands / Architecture sections below as they are decided.
