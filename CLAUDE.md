@@ -57,22 +57,60 @@ Follow standard conventions for whichever framework is adopted:
 - Validate all user input at system boundaries
 - Follow OWASP best practices
 
+## Recommended Tech Stack (as of April 2026)
+
+No stack has been chosen yet. These are current, well-supported defaults to consider when bootstrapping. Update this section with actuals once committed.
+
+### Runtime & Language
+
+- **Node.js 24 LTS** (24.15.0, active LTS through Apr 30, 2028). Node 22 LTS is also supported through Apr 30, 2027.
+- **TypeScript 6.0.3** — the final JavaScript-based release; TypeScript 7.0 (Go-native compiler) is targeting mid-2026. Keep `tsconfig` aligned with 6.x defaults.
+- **Package manager:** `pnpm` for general use; `bun` is viable if serverless cold start matters more than ecosystem compatibility.
+
+### Web App (if building a full-stack web app)
+
+- **Next.js 16.2** on the App Router with React Server Components. 16.2 adds stable Adapter API, Turbopack server fast refresh, and agent-ready `create-next-app`.
+- **React 19.2** — Server Components and Server Actions are stable.
+- **UI:** Tailwind CSS + shadcn/ui is the pragmatic default.
+
+### Database & ORM
+
+- **PostgreSQL** for production; **SQLite** (or Turso/LibSQL) is acceptable for dev or small deployments.
+- **ORM:** Drizzle if the team wants SQL-close control and small bundles; Prisma 7 if the team wants a more abstracted, schema-first workflow with richer tooling.
+
+### Tooling
+
+- **Lint/format:** Biome 2.x (single binary, type-aware rules, ~10–25x faster than ESLint+Prettier). Fall back to ESLint + Prettier only if you need specific plugins like `eslint-plugin-react-hooks` or `eslint-plugin-next`.
+- **Unit / component tests:** Vitest.
+- **E2E tests:** Playwright (use `getByRole`, `getByLabel` selectors).
+- **CI:** GitHub Actions.
+
 ## Key Commands
 
-_(To be filled in as the tech stack is established)_
+_(To be filled in once `package.json` exists. Expected shape based on the recommended stack above:)_
 
 ```bash
 # Install dependencies
-# TBD
+pnpm install
 
 # Run development server
-# TBD
+pnpm dev
 
 # Run tests
-# TBD
+pnpm test           # unit/component (Vitest)
+pnpm test:e2e       # end-to-end (Playwright)
 
 # Lint / format
-# TBD
+pnpm lint           # Biome check
+pnpm format         # Biome format --write
+
+# Type check
+pnpm typecheck
+
+# Database (if using Drizzle)
+pnpm db:generate    # generate migrations
+pnpm db:migrate     # apply migrations
+pnpm db:studio      # open Drizzle Studio
 ```
 
 ## Architecture
@@ -107,3 +145,9 @@ This log tracks AI-assisted sessions so future sessions can pick up where prior 
 - Extended `CLAUDE.md` with a current-tree snapshot, active-branch list, and this session-history log.
 - Commits on branch: `Add CLAUDE.md with project conventions and structure guidelines` (root commit).
 - Outstanding decisions for future sessions: choose a tech stack (frontend framework, backend language/runtime, database), establish test and lint tooling, create `main`, and fill in the Key Commands / Architecture sections below as they are decided.
+
+### 2026-04-18 — `claude/add-claude-documentation-ax0st` (follow-up)
+
+- Reviewed current state of the JS/TS ecosystem and added a **Recommended Tech Stack** section reflecting April 2026 defaults: Node.js 24 LTS, TypeScript 6.0, Next.js 16.2, React 19.2, Drizzle/Prisma on Postgres, Biome for lint/format, Vitest + Playwright for testing.
+- Populated **Key Commands** with the expected `pnpm` script surface for the recommended stack (still conditional — no `package.json` exists yet).
+- Repo remains source-empty; no code, `package.json`, or CI added. Stack choice is still the next decision.
