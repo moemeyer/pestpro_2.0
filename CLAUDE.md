@@ -12,14 +12,20 @@ This repository is in its initial setup phase. There is no existing codebase yet
 
 ```
 pestpro_2.0/
-└── CLAUDE.md   # This file
+├── .claude/
+│   ├── hooks/
+│   │   └── session-start.sh   # SessionStart hook (installs deps on remote sessions)
+│   └── settings.json           # Claude Code project settings (hooks config)
+├── .gitignore                  # Excludes transcripts/
+├── CLAUDE.md                   # This file
+└── transcripts/                # Local-only session transcripts (gitignored)
 ```
 
-No source code, `package.json`, tests, CI, or configuration files exist yet. The tech stack has not been chosen.
+No source code, `package.json`, tests, CI, or application configuration files exist yet. The tech stack has not been chosen.
 
 ### Active Branches
 
-- `claude/add-claude-documentation-ax0st` — documentation branch (current). Contains the initial commit introducing `CLAUDE.md`.
+- `claude/add-claude-documentation-ax0st` — documentation and project-setup branch (current, 5 commits). Contains `CLAUDE.md`, SessionStart hook, `.gitignore`, and project settings.
 - `main` does not yet exist. It should be created from the first meaningful commit once a tech stack is chosen.
 
 ## Development Conventions
@@ -151,3 +157,17 @@ This log tracks AI-assisted sessions so future sessions can pick up where prior 
 - Reviewed current state of the JS/TS ecosystem and added a **Recommended Tech Stack** section reflecting April 2026 defaults: Node.js 24 LTS, TypeScript 6.0, Next.js 16.2, React 19.2, Drizzle/Prisma on Postgres, Biome for lint/format, Vitest + Playwright for testing.
 - Populated **Key Commands** with the expected `pnpm` script surface for the recommended stack (still conditional — no `package.json` exists yet).
 - Repo remains source-empty; no code, `package.json`, or CI added. Stack choice is still the next decision.
+
+### 2026-04-18 — `claude/add-claude-documentation-ax0st` (session-start hook)
+
+- Created `.claude/hooks/session-start.sh` — a synchronous SessionStart hook that installs dependencies (pnpm/npm/pip) when running on Claude Code on the web. No-op locally and when no dependency manifest exists.
+- Created `.claude/settings.json` to register the hook.
+- Added `.gitignore` (excludes `transcripts/`).
+- Exported session transcript to `transcripts/session-2026-04-18.jsonl` (local only, gitignored).
+- Commits: `Add SessionStart hook for Claude Code on the web` (`ced473a`), `Add .gitignore to exclude session transcripts` (`4cdc877`).
+
+### 2026-04-26 — `claude/add-claude-documentation-ax0st` (review & sync)
+
+- Reviewed full repo state. No new files or code had been added since 2026-04-18.
+- Updated `CLAUDE.md`: corrected Current Tree to reflect `.claude/`, `.gitignore`, and `transcripts/`; updated Active Branches description; added missing session history entries for the hook setup and this review session.
+- Outstanding decisions remain unchanged: choose a tech stack, bootstrap `package.json`, create `main`.
